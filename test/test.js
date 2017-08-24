@@ -100,7 +100,7 @@ function mockRender (options, data) {
   }
   function e (text = '') {
     return {
-      text:  text,
+      text: text,
       isComment: true
     }
   }
@@ -127,6 +127,18 @@ function interopDefault (module) {
 }
 
 describe('vue-loader', function () {
+  it('loader parse', done => {
+    test({
+      entry: './test/fixtures/loader-parse.vue'
+    }, (window, module, rawModule) => {
+      var vnode = mockRender(module, {
+        msg: 'hi'
+      })
+      expect(vnode).to.be.ok
+      done()
+    })
+  })
+
   it('basic', done => {
     test({
       entry: './test/fixtures/basic.vue'
